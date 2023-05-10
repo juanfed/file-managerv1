@@ -10,7 +10,7 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm  p-3">
       <Link className="navbar-brand ms-5" to="/dashboard">
-        File Management System
+        Carpeta Ciudadana
       </Link>
 
       <ul className="navbar-nav ms-auto me-5">
@@ -18,9 +18,15 @@ const Navbar = () => {
           <>
             <li className="nav-item mx-2">
               <p className="my-0 mt-2 mx-2">
-                <span className="text-dark">Welcome, </span>
                 <span className="fw-bold">{user.displayName}</span>
               </p>
+            </li>
+            <li className="nav-item">
+              <button
+                className="btn btn-secondary"
+              >
+                Solicitar Documento
+              </button>
             </li>
             <li className="nav-item mx-2">
               <Link className="btn btn-primary" to="/">
