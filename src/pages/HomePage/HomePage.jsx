@@ -6,7 +6,7 @@ const HomePage = () => {
     <>
       <NavigationComponent />
       <h1 className="display-1 my-5 text-center">
-        Welcome To React Firebase File Management System
+        Bienvenidos a carpeta ciudadana
       </h1>
     </>
   );
