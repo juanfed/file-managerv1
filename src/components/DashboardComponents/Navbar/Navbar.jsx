@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Modal, Button, Form } from "react-bootstrap";
+import axios from 'axios';
 
 import FormularioSolicitudDocumento from "../../FormularioSolicitudDocumento";
 
@@ -20,7 +21,22 @@ const Navbar = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí puedes añadir la lógica para enviar la información del formulario a la base de datos
+    // Aquí enviamos los datos al endpoint utilizando Axios
+    axios.post('http://169.51.207.94:31290/apis/registerCitizen', {
+      id: e.target.formNumeroCedula.value,
+      name: e.target.formCampoNombre.value,
+      address: e.target.formCampoDireccion.value,
+      email: e.target.formCampoEmail.value,
+      operadorId: e.target.formOperadoresId.value,
+      operadorName: e.target.formOperadores.value,
+
+    })
+      .then(function (response) {
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     handleCloseModalIncribir();
   };
 
@@ -84,7 +100,14 @@ const Navbar = () => {
           <FormularioSolicitudDocumento />
         </Modal.Body>
       </Modal>
-
+      {/*
+             "id": 1234567899,
+  "name": "Carlos Andres Caro",
+  "address": "Cra 54 # 45 -67",
+  "email": "caro@mymail.com",
+  "operatorId": 1,
+  "operatorName": "Operador Ciudadano"
+          */}
 
       <Modal show={showModalIncribir} onHide={handleCloseModalIncribir}>
         <Modal.Header closeButton>
@@ -97,10 +120,32 @@ const Navbar = () => {
               <Form.Control type="text" placeholder="Ingrese el numero de cedula" />
             </Form.Group>
 
-            <Form.Group controlId="formCampoTexto">
-              <Form.Label>Campo de Texto</Form.Label>
-              <Form.Control type="text" placeholder="Ingrese el texto" />
+            <Form.Group controlId="formCampoNombre">
+              <Form.Label>Nombre</Form.Label>
+              <Form.Control type="text" placeholder="Ingrese su nombre" />
             </Form.Group>
+
+            <Form.Group controlId="formCampoDireccion">
+              <Form.Label>Dirección</Form.Label>
+              <Form.Control type="text" placeholder="Ingrese su dirección" />
+            </Form.Group>
+
+            <Form.Group controlId="formCampoEmail">
+              <Form.Label>Email</Form.Label>
+              <Form.Control type="text" placeholder="Ingrese su email" />
+            </Form.Group>
+
+            <Form.Group controlId="formOperadoresId">
+              <Form.Label>Operador ID</Form.Label>
+              <Form.Control as="select" defaultValue="Seleccione un operador ID...">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </Form.Control>
+            </Form.Group>
+
 
             <Form.Group controlId="formOperadores">
               <Form.Label>Lista de Operadores</Form.Label>

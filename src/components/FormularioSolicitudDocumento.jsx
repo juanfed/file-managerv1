@@ -1,4 +1,3 @@
-import Navbar from '../components/DashboardComponents/Navbar/Navbar';
 import React, { Component } from 'react';
 
 class FormularioSolicitudDocumento extends Component {
