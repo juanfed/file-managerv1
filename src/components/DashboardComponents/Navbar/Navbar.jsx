@@ -32,7 +32,7 @@ const Navbar = () => {
       // ya que estás realizando solicitudes no seguras en un entorno seguro.
       // Asegúrate de comprender los riesgos asociados antes de habilitar esto.
       // Siempre es preferible utilizar conexiones seguras (HTTPS) en producción.
-      withCredentials: true,
+      withCredentials: false,
       // Forzar el uso de HTTP en lugar de HTTPS
       // Nota: Esto solo afecta la solicitud actual, no la URL base.
       // Si la URL base es HTTPS, seguirá siendo HTTPS.
