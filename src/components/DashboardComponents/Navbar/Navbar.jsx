@@ -22,7 +22,7 @@ const Navbar = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Aquí enviamos los datos al endpoint utilizando Axios
-    axios.post('http://169.51.207.94:31290/apis/registerCitizen', {
+    axios.post('/apis/registerCitizen', {
       id: e.target.formNumeroCedula.value,
       name: e.target.formCampoNombre.value,
       address: e.target.formCampoDireccion.value,
