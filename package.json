@@ -1,6 +1,7 @@
 {
   "name": "react-firebase-file-management-system",
   "private": true,
+  "start": "HTTPS=false react-scripts start",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
