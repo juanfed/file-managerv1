@@ -21,15 +21,34 @@ const Navbar = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí enviamos los datos al endpoint utilizando Axios
-    axios.post('/apis/registerCitizen', {
+    // Obtén la URL base del servidor desde una variable de entorno
+    const serverUrl = process.env.REACT_APP_SERVER_URL;
+  
+    // Configura Axios para permitir solicitudes en HTTP
+    const axiosInstance = axios.create({
+      baseURL: serverUrl,
+      // Habilita solicitudes en HTTP
+      // Nota: Esto puede generar advertencias de seguridad en el navegador
+      // ya que estás realizando solicitudes no seguras en un entorno seguro.
+      // Asegúrate de comprender los riesgos asociados antes de habilitar esto.
+      // Siempre es preferible utilizar conexiones seguras (HTTPS) en producción.
+      withCredentials: true,
+      // Forzar el uso de HTTP en lugar de HTTPS
+      // Nota: Esto solo afecta la solicitud actual, no la URL base.
+      // Si la URL base es HTTPS, seguirá siendo HTTPS.
+      // Asegúrate de que la URL base sea HTTP para que esto tenga efecto.
+      // Si no, tendrás que modificar la URL base también.
+      httpsAgent: new https.Agent({ rejectUnauthorized: false }),
+    });
+  
+    // Realiza la solicitud utilizando Axios configurado con las opciones de HTTP
+    axiosInstance.post('/apis/registerCitizen', {
       id: e.target.formNumeroCedula.value,
       name: e.target.formCampoNombre.value,
       address: e.target.formCampoDireccion.value,
       email: e.target.formCampoEmail.value,
       operadorId: e.target.formOperadoresId.value,
       operadorName: e.target.formOperadores.value,
-
     })
       .then(function (response) {
         console.log(response.data);
